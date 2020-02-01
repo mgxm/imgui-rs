@@ -1,7 +1,7 @@
 use bitflags::bitflags;
 use std::f32;
 use std::ops::{Index, IndexMut};
-use std::os::raw::{c_char, c_int, c_void};
+use std::os::raw::{c_char, c_void};
 use std::time::Instant;
 
 use crate::fonts::atlas::FontAtlas;
@@ -44,6 +44,14 @@ bitflags! {
         /// `set_mouse_cursor` to change the mouse cursor. You may want to honor requests from
         /// imgui-rs by reading `get_mouse_cursor` yourself instead.
         const NO_MOUSE_CURSOR_CHANGE = sys::ImGuiConfigFlags_NoMouseCursorChange;
+		/// TODO: add description
+		const DOCKING_ENABLE = sys::ImGuiConfigFlags_DockingEnable;
+		/// TODO: add description
+		const VIEWPORTS_ENABLE = sys::ImGuiConfigFlags_ViewportsEnable;
+		/// TODO: add description
+		const DPI_ENABLE_SACLE_VIEWPORTS = sys::ImGuiConfigFlags_DpiEnableScaleViewports;
+		/// TODO: add description
+		const DPI_ENABLE_SACLE_FONTS = sys::ImGuiConfigFlags_DpiEnableScaleFonts;
         /// Application is SRGB-aware.
         ///
         /// Not used by core imgui-rs.
@@ -71,6 +79,12 @@ bitflags! {
         ///
         /// This enables output of large meshes (64K+ vertices) while still using 16-bits indices.
         const RENDERER_HAS_VTX_OFFSET = sys::ImGuiBackendFlags_RendererHasVtxOffset;
+		/// TODO: add description
+		const PLATFORM_HAS_VIEWPORTS = sys::ImGuiBackendFlags_PlatformHasViewports;
+		/// TODO: add description
+		const HAS_MOUSE_HOVERED_VIEWPORT = sys::ImGuiBackendFlags_HasMouseHoveredViewport;
+		/// TODO: add description
+		const RENDER_HAS_VIEWPORTS = sys::ImGuiBackendFlags_RendererHasViewports;
     }
 }
 
@@ -174,6 +188,30 @@ pub struct Io {
     /// framebuffer coordinates
     pub display_framebuffer_scale: [f32; 2],
 
+	/// TODO: add description
+	pub config_docking_no_split: bool,
+
+	/// TODO: add description
+	pub config_docking_with_shift: bool,
+
+	/// TODO: add description
+	pub config_docking_always_tab_bar: bool,
+
+	/// TODO: add description
+	pub config_docking_transparent_payload: bool,
+
+	/// TODO: add description
+	pub config_viewports_no_auto_merge: bool,
+
+	/// TODO: add description
+	pub config_viewports_no_task_bar_icon: bool,
+
+	/// TODO: add description
+	pub config_viewports_no_decoration: bool,
+
+	/// TODO: add description
+	pub config_viewports_no_default_parent: bool,
+
     /// Request imgui-rs to draw a mouse cursor for you
     pub mouse_draw_cursor: bool,
     /// macOS-style input behavior.
@@ -211,8 +249,6 @@ pub struct Io {
     pub(crate) set_clipboard_text_fn:
         Option<unsafe extern "C" fn(user_data: *mut c_void, text: *const c_char)>,
     pub(crate) clipboard_user_data: *mut c_void,
-    ime_set_input_screen_pos_fn: Option<unsafe extern "C" fn(x: c_int, y: c_int)>,
-    ime_window_handle: *mut c_void,
     render_draw_lists_fn_unused: *mut c_void,
 
     /// Mouse position, in pixels.
@@ -230,6 +266,8 @@ pub struct Io {
     /// Most users don't have a mouse with a horizontal wheel, and may not be filled by all
     /// backends.
     pub mouse_wheel_h: f32,
+	/// TODO: add description
+	pub mouse_hovered_viewport: u32,
     /// Keyboard modifier pressed: Control
     pub key_ctrl: bool,
     /// Keyboard modifier pressed: Shift

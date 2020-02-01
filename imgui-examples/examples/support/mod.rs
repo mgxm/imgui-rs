@@ -1,6 +1,6 @@
 use glium::glutin::{self, Event, WindowEvent};
 use glium::{Display, Surface};
-use imgui::{Context, FontConfig, FontGlyphRanges, FontSource, Ui};
+use imgui::{Context, ConfigFlags, FontConfig, FontGlyphRanges, FontSource, Ui};
 use imgui_glium_renderer::Renderer;
 use imgui_winit_support::{HiDpiMode, WinitPlatform};
 use std::time::Instant;
@@ -106,11 +106,13 @@ impl System {
             });
 
             let io = imgui.io_mut();
+			io.config_flags = ConfigFlags::DOCKING_ENABLE;
             platform
                 .prepare_frame(io, &window)
                 .expect("Failed to start frame");
             last_frame = io.update_delta_time(last_frame);
             let mut ui = imgui.frame();
+
             run_ui(&mut run, &mut ui);
 
             let mut target = display.draw();

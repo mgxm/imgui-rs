@@ -95,6 +95,8 @@ bitflags! {
         const NO_NAV_FOCUS = sys::ImGuiWindowFlags_NoNavFocus;
         /// Append '*' to title without affecting the ID, as a convenience
         const UNSAVED_DOCUMENT = sys::ImGuiWindowFlags_UnsavedDocument;
+		/// TODO: add description
+		const NO_DOCKING = sys::ImGuiWindowFlags_NoDocking;
         /// Disable gamepad/keyboard navigation and focusing.
         ///
         /// Shorthand for `WindowFlags::NO_NAV_INPUTS | WindowFlags::NO_NAV_FOCUS`.
@@ -109,6 +111,8 @@ bitflags! {
         /// Shorthand for `WindowFlags::NO_MOUSE_INPUTS | WindowFlags::NO_NAV_INPUTS |
         /// WindowFlags::NO_NAV_FOCUS`.
         const NO_INPUTS = sys::ImGuiWindowFlags_NoInputs;
+		/// TODO: add description
+		const DOCK_NODE_HOST = sys::ImGuiWindowFlags_DockNodeHost;
     }
 }
 

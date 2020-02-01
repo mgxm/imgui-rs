@@ -47,6 +47,7 @@ pub use self::widget::slider::*;
 pub use self::window::child_window::*;
 pub use self::window::*;
 pub use self::window_draw_list::{ChannelsSplit, ImColor, WindowDrawList};
+pub use self::docking::*;
 use internal::RawCast;
 
 mod clipboard;
@@ -74,6 +75,7 @@ mod utils;
 mod widget;
 mod window;
 mod window_draw_list;
+mod docking;
 
 /// Returns the underlying Dear ImGui library version
 pub fn dear_imgui_version() -> &'static str {
